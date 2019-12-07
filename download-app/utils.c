@@ -14,7 +14,15 @@ void process_string(char* argv, pressets* pressets){
     } //todo other users? 
 
     //configs
+    char* host = get_string_until_char(argv,'/');
+    printf("host: %s\n",host);
+    //memccpy(pressets->host,&host,strlen(&host));
 
+}
+
+char* get_string_until_char(char* argv, char c){
+    char* ret = strtok(argv,&c);
+    return ret; 
 }
 
 void remove_ftp_head(char* argv){
