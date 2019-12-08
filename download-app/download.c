@@ -51,15 +51,16 @@ int main(int argc, char* argv[]){
         print_error(ret); 
     }
 
-    //DOWNLOAD 
-    //todo
+    //download file
+    if((ret = ftp_download(ftp_data_socket,pressets.filename)) != 0 ){
+        print_error(ret); 
+    }
 
     //close 
-    /*
+    
     if((ret = ftp_close(ftp_socket)) != 0){
         print_error(ret);
     }
-    */
-
+    
     return 0; 
 }

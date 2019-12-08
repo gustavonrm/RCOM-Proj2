@@ -27,6 +27,8 @@
 #define ERR_FTP_RD -5
 #define ERR_FTP_WR -6
 #define ERR_FTP_CLOSE -7
+#define ERR_FTP_RD_DATA -8
+#define ERR_FILE_WR -9
 
 //values
 
@@ -43,7 +45,7 @@ typedef struct pressets{
     char host[256]; 
     char ip[256];
     char path[256];
-    char filename[256];
+    char filename[256]; //todo this is not needed maybe
     int port; 
 }pressets;
 

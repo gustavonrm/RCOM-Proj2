@@ -36,6 +36,7 @@ void process_string(char* link, pressets* pressets){
     //create port
     pressets->port = PORT_VAL;  //default port value 'telnet ftp.fe.up.pt 21'
 }
+
 char* get_string_until_char(char* link, char c){
     int i = 0; 
     char * ret = (char *) malloc(strlen(link)); 

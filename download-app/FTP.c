@@ -134,7 +134,7 @@ int ftp_retr(int socket_fd, char * file){
 	char buf[BUFFER_SIZE]; 
 
 	printf("file:%s\n",file);
-	
+
 	//> retr <file>
 	sprintf(buf, "retr %s\r\n", file);
 
@@ -147,6 +147,33 @@ int ftp_retr(int socket_fd, char * file){
 	if(ftp_read(socket_fd,buf,sizeof(buf)) != 0 ){
 		return ERR_FTP_RD; 
 	}
+
+	return 0; 
+}
+
+int ftp_download(int data_socket,char * file){
+	
+	int bytes; 
+	char buf[BUFFER_SIZE]; 
+	FILE * f; 
+
+	if (!(f = fopen(file, "w"))) {
+		printf("ERROR: Cannot open file.\n");
+		return 1;
+	}
+
+	while ((bytes = read(data_socket, buf, sizeof(buf)))) {
+		if (bytes < 0) {
+			return ERR_FTP_RD_DATA;
+		}
+		if ((bytes = fwrite(buf, bytes, 1, f)) < 0) {
+			return ERR_FILE_WR;
+		}
+	}
+
+	fclose(f);
+	close(data_socket);
+
 
 	return 0; 
 }
