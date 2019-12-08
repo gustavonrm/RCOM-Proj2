@@ -31,6 +31,10 @@
 //values
 
 #define PORT_VAL 21
+#define BUFFER_SIZE 512
+
+#define TYPE_A 1
+#define TYPE_B 0
 
 /*====== STRUCTS ======*/
 typedef struct pressets{

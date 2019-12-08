@@ -13,7 +13,8 @@ int main(int argc, char* argv[]){
     //VARS
     pressets pressets; 
     char link[256];
-    int ftp_socket =0; //ftp socket fd
+    int ftp_socket =0; //ftp socket fd - terminal window A
+    int ftp_data_socket =0; //ftp socket to tranfer the data - terminal window B 
     int ret = 0; //error control  
 
     strcpy(link,argv[1]);  
@@ -28,7 +29,7 @@ int main(int argc, char* argv[]){
     // parse arguments build structures 
 
     //connect ftp 
-    if((ftp_socket = connect_ftp(pressets.ip,pressets.port)) < 0){
+    if((ftp_socket = connect_ftp(pressets.ip,pressets.port,TYPE_A)) < 0){
         print_error(ftp_socket); 
     }
 
@@ -37,9 +38,14 @@ int main(int argc, char* argv[]){
         print_error(ret); 
     }
 
-    //pasv 
-    //todo
-    
+    //change directory
+    //todo 
+
+    //pasv - passive mode 
+    if((ftp_data_socket = ftp_pasv(ftp_socket)) <= 0 ){
+        print_error(ftp_data_socket); 
+    }
+
     //login onthe other side with the X*256+Y
     //todo
 
