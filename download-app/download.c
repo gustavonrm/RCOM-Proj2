@@ -16,13 +16,15 @@ int main(int argc, char* argv[]){
     chopN(argv[1], 1); 
 
     process_string(link,&pressets);
- 
+    
+    //debug
     printf("host: %s\n",pressets.host);
     printf("path: %s\n",pressets.path);
     printf("filename: %s\n",pressets.filename);
     // parse arguments build structures 
 
     //login 
+    
 
     //pasv 
 
