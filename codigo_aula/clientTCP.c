@@ -11,8 +11,8 @@
 #include <netdb.h>
 #include <strings.h>
 
-#define SERVER_PORT 6000
-#define SERVER_ADDR "192.168.28.96"
+#define SERVER_PORT 21
+#define SERVER_ADDR "193.137.29.15"
 
 int main(int argc, char** argv){
 
@@ -39,6 +39,8 @@ int main(int argc, char** argv){
         	perror("connect()");
 		exit(0);
 	}
+
+	//todo this is used forward
     	/*send a string to the server*/
 	bytes = write(sockfd, buf, strlen(buf));
 	printf("Bytes escritos %d\n", bytes);

@@ -12,5 +12,8 @@
 #include <netdb.h>
 #include <strings.h>
 
+#include "utils.h"
+
+void connect_ftp(char * ip, int port); 
 
 #endif

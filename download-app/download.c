@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "utils.h"
+#include "FTP.h"
 
 int main(int argc, char* argv[]){
     
@@ -21,21 +22,28 @@ int main(int argc, char* argv[]){
     printf("host: %s\n",pressets.host);
     printf("path: %s\n",pressets.path);
     printf("filename: %s\n",pressets.filename);
-    printf("ip: %s\n",pressets.ip);
     // parse arguments build structures 
 
-    //login 
+    //connect ftp 
+    connect_ftp(pressets.ip,pressets.port); 
 
+    //login 
+    //todo
 
     //pasv 
-
+    //todo
+    
     //login onthe other side with the X*256+Y
+    //todo
 
     //retr file path 
+    //todo
 
     //DOWNLOAD 
+    //todo
 
     //close 
+    //todo
 
     return 0; 
 

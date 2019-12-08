@@ -21,6 +21,8 @@
 #define ERR_ARG 1
 #define ERR_FTP_NAME 2
 
+#define PORT_VAL 21
+
 /*====== STRUCTS ======*/
 typedef struct pressets{
     char username[256]; 

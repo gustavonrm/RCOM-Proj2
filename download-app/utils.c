@@ -25,13 +25,17 @@ void process_string(char* link, pressets* pressets){
     char *path = link;  
     memcpy(pressets->path,path,strlen(path)); 
 
+    //filename
     get_file_name(link);
     memcpy(pressets->filename,link,strlen(link)); 
-
+    
+    //ip 
     char *ip = getIp(pressets->host);
     memcpy(pressets->ip, ip, strlen(ip));
-}
 
+    //create port
+    pressets->port = PORT_VAL;  //default port value 'telnet ftp.fe.up.pt 21'
+}
 char* get_string_until_char(char* link, char c){
     int i = 0; 
     char * ret = (char *) malloc(strlen(link)); 
@@ -83,6 +87,6 @@ char* getIp(char * hostname){
     char* ret = inet_ntoa(*((struct in_addr *)h->h_addr));
     printf("Host name  : %s\n", h->h_name);
     printf("IP Address : %s\n",ret);
-    
+
     return ret; 
 }
