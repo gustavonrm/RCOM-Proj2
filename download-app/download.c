@@ -13,6 +13,9 @@ int main(int argc, char* argv[]){
     //VARS
     pressets pressets; 
     char link[256];
+    int ftp_socket =0; //ftp socket fd
+    int ret = 0; //error control  
+
     strcpy(link,argv[1]);  
     chopN(argv[1], 1); 
 
@@ -25,10 +28,14 @@ int main(int argc, char* argv[]){
     // parse arguments build structures 
 
     //connect ftp 
-    connect_ftp(pressets.ip,pressets.port); 
+    if((ftp_socket = connect_ftp(pressets.ip,pressets.port)) < 0){
+        print_error(ftp_socket); 
+    }
 
     //login 
-    //todo
+    if((ret = login_ftp(ftp_socket,pressets.username,pressets.password)) != 0 ){
+        print_error(ret); 
+    }
 
     //pasv 
     //todo
@@ -43,8 +50,11 @@ int main(int argc, char* argv[]){
     //todo
 
     //close 
-    //todo
-
+    /*
+    if((ret = ftp_close(ftp_socket)) != 0){
+        print_error(ret);
+    }
+*/
     return 0; 
 
 }

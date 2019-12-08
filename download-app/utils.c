@@ -77,6 +77,11 @@ void print_usage(int error){
     exit(error); 
 }
 
+void print_error(int error){
+    printf("ERROR: %d\n",error); 
+    exit(error); 
+}
+
 char* getIp(char * hostname){
     struct hostent *h;
 

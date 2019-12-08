@@ -15,11 +15,20 @@
 
 /*====== MACROS =====*/
 
+//bool
 #define true 1
-#define false 2
+#define false 0
 
-#define ERR_ARG 1
-#define ERR_FTP_NAME 2
+//errors
+#define ERR_ARG -1
+#define ERR_FTP_NAME -2
+#define ERR_FTP_CONNECT -3
+#define ERR_FTP_SOCKET -4
+#define ERR_FTP_RD -5
+#define ERR_FTP_WR -6
+#define ERR_FTP_CLOSE -7
+
+//values
 
 #define PORT_VAL 21
 
@@ -44,6 +53,7 @@ void get_file_name(char * link);
 //cut string first n elems 
 size_t chopN(char *str, size_t n);
 void print_usage(int error);
+void print_error(int error); 
 
 //ip 
 char* getIp(char* hostname);
