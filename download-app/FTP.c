@@ -31,16 +31,6 @@ int connect_ftp(char * ip, int port,int sock_type){
 	}
 
 	return sockfd;
-    //todo add further
-	
-	/*
-
-	bytes = write(sockfd, buf, strlen(buf));
-	printf("Bytes escritos %d\n", bytes);
-
-	close(sockfd);
-	*/
-
 }
 
 int login_ftp(int socket_fd,char * username,char * password){
@@ -136,6 +126,29 @@ int ftp_pasv(int socket_fd){
     }
 
 	return ret; 
+}
+
+int ftp_retr(int socket_fd, char * file){
+
+	int bytes; 
+	char buf[BUFFER_SIZE]; 
+
+	printf("file:%s\n",file);
+	
+	//> retr <file>
+	sprintf(buf, "retr %s\r\n", file);
+
+	if((bytes = write(socket_fd,buf, strlen(buf)))<=0 ){
+			return ERR_FTP_WR;
+	}
+
+	printf("\nFILE - Bytes written %d\n", bytes);
+
+	if(ftp_read(socket_fd,buf,sizeof(buf)) != 0 ){
+		return ERR_FTP_RD; 
+	}
+
+	return 0; 
 }
 
 int ftp_close(int socket_fd){

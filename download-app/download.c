@@ -41,16 +41,15 @@ int main(int argc, char* argv[]){
     //change directory
     //todo 
 
-    //pasv - passive mode 
+    //pasv - passive mode - and open socket on the other side 
     if((ftp_data_socket = ftp_pasv(ftp_socket)) <= 0 ){
         print_error(ftp_data_socket); 
     }
 
-    //login onthe other side with the X*256+Y
-    //todo
-
     //retr file path 
-    //todo
+    if((ret = ftp_retr(ftp_socket,pressets.path)) != 0 ){
+        print_error(ret); 
+    }
 
     //DOWNLOAD 
     //todo
@@ -60,7 +59,7 @@ int main(int argc, char* argv[]){
     if((ret = ftp_close(ftp_socket)) != 0){
         print_error(ret);
     }
-*/
-    return 0; 
+    */
 
+    return 0; 
 }

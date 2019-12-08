@@ -23,7 +23,7 @@ void process_string(char* link, pressets* pressets){
 
     //path 
     char *path = link;  
-    memcpy(pressets->path,path,strlen(path)); 
+    memcpy(pressets->path,path,strlen(path)+1); 
 
     //filename
     get_file_name(link);
