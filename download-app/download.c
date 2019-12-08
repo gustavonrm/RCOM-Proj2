@@ -9,9 +9,17 @@ int main(int argc, char* argv[]){
         print_usage(ERR_ARG); 
 
     printf("DOWNLOAD FTP - anonymous user\n"); 
-
+    //VARS
     pressets pressets; 
-    process_string(argv[1],&pressets);
+    char link[256];
+    strcpy(link,argv[1]);  
+    chopN(argv[1], 1); 
+
+    process_string(link,&pressets);
+ 
+    printf("host: %s\n",pressets.host);
+    printf("path: %s\n",pressets.path);
+    printf("filename: %s\n",pressets.filename);
     // parse arguments build structures 
 
     //login 

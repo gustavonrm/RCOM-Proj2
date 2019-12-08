@@ -27,9 +27,10 @@ typedef struct pressets{
 
 /*====== FUNCTIONS =====*/
 
-void process_string(char* argv, pressets* pressets);
-void remove_ftp_head(char* argv);
-char* get_string_until_char(char* argv, char c);
+void process_string(char* link, pressets* pressets);
+void remove_ftp_head(char* link);
+char* get_string_until_char(char* link, char c);
+void get_file_name(char * link);
 //cut string first n elems 
 size_t chopN(char *str, size_t n);
 void print_usage(int error);

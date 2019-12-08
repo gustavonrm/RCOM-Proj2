@@ -1,11 +1,11 @@
 #include "utils.h"
 
-void process_string(char* argv, pressets* pressets){
+void process_string(char* link, pressets* pressets){
     
     //todo check url integrity 
-    printf("%s\n",argv); 
-    remove_ftp_head(argv); 
-    printf("%s\n",argv); 
+    printf("%s\n",link); 
+    remove_ftp_head(link); 
+    printf("%s\n",link); 
 
     if(true){ /*credentials*/
     //user anonymous 
@@ -13,20 +13,44 @@ void process_string(char* argv, pressets* pressets){
     memcpy(pressets->password,"something",strlen("something")); //any password works
     } //todo other users? 
 
-    //configs
-    char* host = get_string_until_char(argv,'/');
-    printf("host: %s\n",host);
-    //memccpy(pressets->host,&host,strlen(&host));
+    //host
+    char c = '/'; 
+    char* host = get_string_until_char(link,c);
+    memcpy(pressets->host,host,strlen(host)); 
+    printf("%s\n",link); 
+
+    //path 
+    char *path = link;  
+    memcpy(pressets->path,path,strlen(path)); 
+
+    get_file_name(link);
+    memcpy(pressets->filename,link,strlen(link)); 
 
 }
 
-char* get_string_until_char(char* argv, char c){
-    char* ret = strtok(argv,&c);
+char* get_string_until_char(char* link, char c){
+    int i = 0; 
+    char * ret = (char *) malloc(strlen(link)); 
+    for(i=0; i < (int)strlen(link); i++){
+        if(link[i] == c)
+            break;
+        ret[i]=link[i];
+    }
+    chopN(link,i+1); 
     return ret; 
 }
 
-void remove_ftp_head(char* argv){
-    chopN(argv,6);
+void get_file_name(char * link){
+    int pos = 0; 
+    for(int i = 0; i < (int) strlen(link); i++){
+        if(link[i] == '/')
+            pos = i; 
+    }
+    chopN(link, pos+1); 
+}
+
+void remove_ftp_head(char* link){
+    chopN(link,6);
 }
 
 //cut string first n elems 
