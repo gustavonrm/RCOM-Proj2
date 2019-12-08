@@ -29,6 +29,7 @@
 #define ERR_FTP_CLOSE -7
 #define ERR_FTP_RD_DATA -8
 #define ERR_FILE_WR -9
+#define ERR_FILE_NOT_EXISTS -10
 
 //values
 

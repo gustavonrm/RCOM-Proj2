@@ -148,6 +148,9 @@ int ftp_retr(int socket_fd, char * file){
 		return ERR_FTP_RD; 
 	}
 
+	if(buf[0]=='5' && buf[1]=='5' && buf[2]=='0')
+		return ERR_FILE_NOT_EXISTS;
+
 	return 0; 
 }
 

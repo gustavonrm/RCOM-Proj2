@@ -38,9 +38,6 @@ int main(int argc, char* argv[]){
         print_error(ret); 
     }
 
-    //change directory
-    //todo 
-
     //pasv - passive mode - and open socket on the other side 
     if((ftp_data_socket = ftp_pasv(ftp_socket)) <= 0 ){
         print_error(ftp_data_socket); 
