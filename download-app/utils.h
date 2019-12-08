@@ -5,6 +5,13 @@
 #include <stdlib.h>
 #include <strings.h>
 #include <assert.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+#include <signal.h>
+#include <netdb.h>
 
 /*====== MACROS =====*/
 
@@ -27,6 +34,7 @@ typedef struct pressets{
 
 /*====== FUNCTIONS =====*/
 
+//string manipulation 
 void process_string(char* link, pressets* pressets);
 void remove_ftp_head(char* link);
 char* get_string_until_char(char* link, char c);
@@ -34,5 +42,8 @@ void get_file_name(char * link);
 //cut string first n elems 
 size_t chopN(char *str, size_t n);
 void print_usage(int error);
+
+//ip 
+char* getIp(char* hostname);
 
 #endif

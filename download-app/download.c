@@ -21,10 +21,11 @@ int main(int argc, char* argv[]){
     printf("host: %s\n",pressets.host);
     printf("path: %s\n",pressets.path);
     printf("filename: %s\n",pressets.filename);
+    printf("ip: %s\n",pressets.ip);
     // parse arguments build structures 
 
     //login 
-    
+
 
     //pasv 
 

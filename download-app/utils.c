@@ -1,5 +1,7 @@
 #include "utils.h"
 
+//todo swap void to int and make error control 
+
 void process_string(char* link, pressets* pressets){
     
     //todo check url integrity 
@@ -26,6 +28,8 @@ void process_string(char* link, pressets* pressets){
     get_file_name(link);
     memcpy(pressets->filename,link,strlen(link)); 
 
+    char *ip = getIp(pressets->host);
+    memcpy(pressets->ip, ip, strlen(ip));
 }
 
 char* get_string_until_char(char* link, char c){
@@ -67,4 +71,18 @@ size_t chopN(char *str, size_t n)
 void print_usage(int error){
     printf("Usage: download [ftp://<host>/<path>]\n host = ftp.up.pt/ \n path = file\n"); 
     exit(error); 
+}
+
+char* getIp(char * hostname){
+    struct hostent *h;
+
+    if ((h=gethostbyname(hostname)) == NULL) {  
+        herror("gethostbyname");
+        exit(1);
+    }
+    char* ret = inet_ntoa(*((struct in_addr *)h->h_addr));
+    printf("Host name  : %s\n", h->h_name);
+    printf("IP Address : %s\n",ret);
+    
+    return ret; 
 }
