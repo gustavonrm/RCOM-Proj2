@@ -5,10 +5,9 @@ int connect_ftp(char * ip, int port,int sock_type){
 	struct sockaddr_in server_addr;
 	char buf[BUFFER_SIZE]; 
 	
+	puts("Conneting socket");
     //*remove the stupid blank at the en
-	if(sock_type)
-    	ip[strlen(ip)-1] = 0;
-
+	puts(ip);
 	/*server address handling*/
 	bzero((char*)&server_addr,sizeof(server_addr));
 	server_addr.sin_family = AF_INET;
@@ -40,8 +39,9 @@ int login_ftp(int socket_fd,char * username,char * password){
 	char buf[BUFFER_SIZE]; 
 
 	//first write username 
-	printf("user: %s\n",username); 
 	//>user <username>
+	puts(username); 
+	//sprintf(buf, "user %s\r\n", username);
 	sprintf(buf, "user %s\r\n", "anonymous");
 
 	if((bytes = write(socket_fd, buf, strlen(buf)))<=0 ){
@@ -134,6 +134,7 @@ int ftp_retr(int socket_fd, char * file){
 	char buf[BUFFER_SIZE]; 
 
 	printf("file:%s\n",file);
+	printf("len=%ld\n",strlen(file));
 
 	//> retr <file>
 	sprintf(buf, "retr %s\r\n", file);
@@ -156,6 +157,8 @@ int ftp_retr(int socket_fd, char * file){
 
 int ftp_download(int data_socket,char * file){
 	
+	puts("file-name: "); puts(file); puts("\n");
+	printf("len=%ld\n",strlen(file));
 	int bytes; 
 	char buf[BUFFER_SIZE]; 
 	FILE * f; 

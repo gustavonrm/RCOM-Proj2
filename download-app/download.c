@@ -18,14 +18,19 @@ int main(int argc, char* argv[]){
     int ret = 0; //error control  
 
     strcpy(link,argv[1]);  
-    chopN(argv[1], 1); 
+    //chopN(argv[1], 1); 
 
     process_string(link,&pressets);
     
     //debug
-    printf("host: %s\n",pressets.host);
-    printf("path: %s\n",pressets.path);
-    printf("filename: %s\n",pressets.filename);
+    printf("username: %s - len: %d\n",pressets.username,(int)strlen(pressets.username));
+    printf("password: %s - len: %d\n",pressets.password,(int)strlen(pressets.password));
+    printf("host: %s - len: %d\n",pressets.host,(int)strlen(pressets.host));
+    printf("ip: %s - len: %d\n",pressets.ip,(int)strlen(pressets.ip));
+    printf("path: %s - len: %d\n",pressets.path,(int)strlen(pressets.path));
+    printf("filename: %s - len: %d\n",pressets.filename,(int)strlen(pressets.filename));
+    
+
     // parse arguments build structures 
 
     //connect ftp 
