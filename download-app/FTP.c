@@ -40,9 +40,9 @@ int login_ftp(int socket_fd,char * username,char * password){
 
 	//first write username 
 	//>user <username>
-	puts(username); 
-	//sprintf(buf, "user %s\r\n", username);
-	sprintf(buf, "user %s\r\n", "anonymous");
+	//puts(username); 
+	sprintf(buf, "user %s\r\n", username);
+	//sprintf(buf, "user %s\r\n", "anonymous");
 
 	if((bytes = write(socket_fd, buf, strlen(buf)))<=0 ){
 		return ERR_FTP_WR;

@@ -12,22 +12,24 @@ void process_string(char* link, pressets* pressets){
     char anonymous[]= "anonymous"; 
     char password[] = " "; 
 
-    if((strchr(link,'[') == NULL) && (strchr(link,']') == NULL)){ /*credentials*/
+    if((strchr(link,':') == NULL) && (strchr(link,'@') == NULL)){ /*credentials*/ //todo if uses brackes chagne for them
      //user anonymous 
         memcpy(pressets->username,anonymous,sizeof(anonymous));
         memcpy(pressets->password,password,strlen(password)); //any password works
     }else {
         puts("login");
-        chopN(link,1);  //erase open bracket
+        //chopN(link,1);  //erase open bracket
         puts(link);
         char* username = get_string_until_char(link,':');
         memcpy(pressets->username,username,strlen(username));
+        if(strcmp(username,"anonymousv>"))
+             memcpy(pressets->username,anonymous,sizeof(anonymous));
         printf("%ld\n",strlen(username));
         puts(username);
         puts(link);
         char* password = get_string_until_char(link,'@');
         memcpy(pressets->password,password,strlen(password)); //any password works
-        chopN(link,1); //erase close bracket 
+        //chopN(link,1); //erase close bracket 
         puts(link);
     }
 

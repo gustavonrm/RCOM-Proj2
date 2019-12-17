@@ -30,7 +30,6 @@ int main(int argc, char* argv[]){
     printf("path: %s - len: %d\n",pressets.path,(int)strlen(pressets.path));
     printf("filename: %s - len: %d\n",pressets.filename,(int)strlen(pressets.filename));
     
-
     // parse arguments build structures 
 
     //connect ftp 
