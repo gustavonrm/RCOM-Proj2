@@ -9,11 +9,27 @@ void process_string(char* link, pressets* pressets){
     remove_ftp_head(link); 
     printf("%s\n",link); 
 
-    if(true){ /*credentials*/
-    //user anonymous 
-    memcpy(pressets->username,"anonymous",strlen("anonymous"));
-    memcpy(pressets->password,"something",strlen("something")); //any password works
-    } //todo other users? 
+    char anonymous[]= "anonymous"; 
+    char password[] = " "; 
+
+    if((strchr(link,'[') == NULL) && (strchr(link,']') == NULL)){ /*credentials*/
+     //user anonymous 
+        memcpy(pressets->username,anonymous,sizeof(anonymous));
+        memcpy(pressets->password,password,strlen(password)); //any password works
+    }else {
+        puts("login");
+        chopN(link,1);  //erase open bracket
+        puts(link);
+        char* username = get_string_until_char(link,':');
+        memcpy(pressets->username,username,strlen(username));
+        printf("%ld\n",strlen(username));
+        puts(username);
+        puts(link);
+        char* password = get_string_until_char(link,'@');
+        memcpy(pressets->password,password,strlen(password)); //any password works
+        chopN(link,1); //erase close bracket 
+        puts(link);
+    }
 
     //host
     char c = '/'; 
