@@ -14,21 +14,20 @@ void process_string(char* link, pressets* pressets){
 
     if((strchr(link,':') == NULL) && (strchr(link,'@') == NULL)){ /*credentials*/ //todo if uses brackes chagne for them
      //user anonymous 
-        memcpy(pressets->username,anonymous,sizeof(anonymous));
-        memcpy(pressets->password,password,strlen(password)); //any password works
+        memset(pressets->username, 0,strlen(anonymous)); 
+        memcpy(pressets->username,anonymous,strlen(anonymous)+1);
+        memset(pressets->password, 0,strlen(password)); 
+        memcpy(pressets->password,password,strlen(password)+1); //any password works
     }else {
         puts("login");
         //chopN(link,1);  //erase open bracket
         puts(link);
         char* username = get_string_until_char(link,':');
-        memcpy(pressets->username,username,strlen(username));
-        if(strcmp(username,"anonymousv>"))
-             memcpy(pressets->username,anonymous,sizeof(anonymous));
-        printf("%ld\n",strlen(username));
-        puts(username);
-        puts(link);
+        memset(pressets->username, 0,strlen(username)); 
+        memcpy(pressets->username,username,strlen(username)+1);
         char* password = get_string_until_char(link,'@');
-        memcpy(pressets->password,password,strlen(password)); //any password works
+        memset(pressets->password, 0,strlen(password)); 
+        memcpy(pressets->password,password,strlen(password)+1); //any password works
         //chopN(link,1); //erase close bracket 
         puts(link);
     }
@@ -36,20 +35,26 @@ void process_string(char* link, pressets* pressets){
     //host
     char c = '/'; 
     char* host = get_string_until_char(link,c);
+    memset(pressets->host, 0,strlen(host)+1); 
     memcpy(pressets->host,host,strlen(host)); 
     printf("%s\n",link); 
 
     //path 
-    char *path = link;  
+    char *path = link; 
+    memset(pressets->path, 0,strlen(path));  
     memcpy(pressets->path,path,strlen(path)+1); 
 
     //filename
     get_file_name(link);
-    memcpy(pressets->filename,link,strlen(link)); 
+    memset(pressets->filename, 0,strlen(link)); 
+    memcpy(pressets->filename,link,strlen(link)+1); 
     
     //ip 
+puts(host);
+puts(pressets->host);
     char *ip = getIp(pressets->host);
-    memcpy(pressets->ip, ip, strlen(ip));
+    memset(pressets->ip, 0,strlen(ip)); 
+    memcpy(pressets->ip, ip, strlen(ip)+1);
 
     //create port
     pressets->port = PORT_VAL;  //default port value 'telnet ftp.fe.up.pt 21'
